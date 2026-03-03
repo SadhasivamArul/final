@@ -1,0 +1,248 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="jpg"
+    href="https://img.freepik.com/premium-vector/motoservicio-white-background_917213-250266.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>BIKE SERVICE CENTER</title>
+</head>
+
+<body>
+  <header>
+    <div class="logos">
+      <img src="../images/name.png" alt="Omega Bike Services name">
+    </div>
+    <div class="content">
+      <a href="aboutcontent" class="about">About Us</a>
+      <a href="ovcontent" class="ov">Our vision</a>
+      <a href="choosecontent" class="whychoose">Why Choose Us</a>
+      <a href="hclients" class="hc">Happy Clients</a>
+      <a href="location" class="loc"> <i class="fa-solid fa-location-dot"></i> Location</a>
+    </div>
+    <div class="user"><a href="signin.html" class="in">Sign In</a>
+      <a href="signup.html" class="up">Sign Up</a>
+    </div>
+  </header>
+  <div class="container">
+    <div class="indexcover">
+      <img src="../images/indeximg.png" alt="index cover">
+    </div>
+    <form class="formcontainer">
+      <select id="vehicle" name="bikes">
+        <option value="select">Select Vehicle</option>
+        <option value="bike">Bike</option>
+      </select>
+      <select id="brand" name="brand">
+        <option value="select">Select Brand</option>
+        <option value="TVS">TVS</option>
+        <option value="HONDA">HONDA</option>
+        <option value="ROYAL">ROYAL ENFIELD</option>
+      </select>
+      <select id="model" name="your model">
+        <option value="select">Select Your Model</option>
+      </select>
+      <select id="fuel" name="fuel type">
+        <option value="select">Fuel Type</option>
+        <option value="petrol">Petrol</option>
+      </select>
+      <button class="letgo">LETS GO&nbsp;&nbsp;
+        <i class="fa fa-angle-right"></i>
+      </button>
+    </form>
+  </div>
+  <div class="container2">
+
+  </div>
+</body>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: white;
+    width: 100%;
+    height: auto;
+  }
+
+  header {
+    background-color: white;
+    padding: 15px 20px;
+    font-size: 20px;
+    text-align: center;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .content {
+    color: black;
+    justify-content: left;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    margin-left: 50px;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+
+  .content a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .logos img {
+    height: 100px;
+    width: auto;
+    top: 10px;
+    left: 115px;
+  }
+
+  .indexcover img {
+    height: 350px;
+    width: 750px;
+    display: flex;
+    margin-left: 100px;
+
+  }
+
+  .in {
+    padding: 5px 15px;
+    border: 2px solid #ffcc00;
+    border-radius: 5px;
+  }
+
+  .up {
+    padding: 5px 15px;
+    border: 2px solid #ffcc00;
+    border-radius: 5px;
+  }
+
+  .user {
+    color: orange;
+    display: flex;
+    align-items: center;
+    margin-left: 100px;
+    gap: 20px;
+    font-size: 20px;
+  }
+
+  .user a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .user a:hover {
+    background-color: orange;
+    transition: 0.3s;
+  }
+
+  .content a:hover {
+    color: orange;
+  }
+
+  .container {
+    display: flex;
+    align-items: flex-start;
+    background-color: #DEE0D3;
+  }
+
+  .formcontainer {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 25px;
+    padding: 50px;
+    padding: 30px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+
+  }
+
+  .formcontainer select {
+    width: 100%;
+    padding: 12px 40px 12px 12px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+
+  .letgo {
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: orange;
+    color: black;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .letgo:hover {
+    color: white;
+  }
+
+  @media (max-width:1440px) {
+    .content {
+      color: black;
+      justify-content: right;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      display: flex;
+      margin-left: 60px;
+      margin-right: 60px;
+      gap: 40px;
+    }
+
+    .user {
+      color: orange;
+      display: flex;
+      justify-content: right;
+      align-items: center;
+      margin-right: 0px;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 16px;
+      margin-left: 0px;
+    }
+
+    .logos img {
+      height: 70px;
+      width: auto;
+      top: 10px;
+      left: 115px;
+    }
+
+    header {
+      background-color: white;
+      padding: 15px 20px;
+      font-size: 20px;
+      text-align: center;
+      justify-content: space-between;
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+</style>
+
+</html>
