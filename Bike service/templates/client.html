@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Clients - Omega Bike Service</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg,#DEE0D3);
+}
+
+/* Header */
+header {
+    background: #111;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Main Container */
+.container {
+    max-width: 1000px;
+    margin: 60px auto;
+    text-align: center;
+}
+
+h1 {
+    color: orange;
+    margin-bottom: 40px;
+}
+
+/* Slider */
+.slider-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+.slider {
+    display: flex;
+    animation: slide 20s linear infinite;
+}
+
+/* Review Cards */
+.review-box {
+    min-width: 300px;
+    margin: 0 15px;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.review-text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.stars {
+    color: gold;
+    margin: 10px 0;
+}
+
+.client-name {
+    font-weight: bold;
+    color: #ff512f;
+}
+
+/* Continuous Animation */
+@keyframes slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Back Button Bottom */
+.back-wrapper {
+    text-align: center;
+    margin: 80px 0 60px;
+}
+
+.back-btn {
+    padding: 14px 35px;
+    background: #111;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background: #444;
+    transform: scale(1.05);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    Happy Clients - Omega Bike Service
+</header>
+
+<div class="container">
+    <h1>Customer Happiness Reviews</h1>
+
+    <div class="slider-wrapper">
+        <div class="slider">
+
+            <!-- Reviews (Duplicated for Smooth Infinite Scroll) -->
+
+            <div class="review-box"><div class="review-text">Excellent service and quick delivery.</div><div class="stars">★★★★★</div><div class="client-name">Arun Kumar</div></div>
+            <div class="review-box"><div class="review-text">Very professional mechanics.</div><div class="stars">★★★★★</div><div class="client-name">Vijay Raj</div></div>
+            <div class="review-box"><div class="review-text">Affordable pricing and honest billing.</div><div class="stars">★★★★★</div><div class="client-name">Praveen S</div></div>
+            <div class="review-box"><div class="review-text">Best bike service in Selaiyur.</div><div class="stars">★★★★★</div><div class="client-name">Karthik M</div></div>
+            <div class="review-box"><div class="review-text">Genuine spare parts used.</div><div class="stars">★★★★★</div><div class="client-name">Ramesh K</div></div>
+            <div class="review-box"><div class="review-text">Friendly staff and clear explanation.</div><div class="stars">★★★★★</div><div class="client-name">Sathish P</div></div>
+            <div class="review-box"><div class="review-text">My bike mileage improved.</div><div class="stars">★★★★★</div><div class="client-name">Manoj R</div></div>
+            <div class="review-box"><div class="review-text">Fast oil change service.</div><div class="stars">★★★★★</div><div class="client-name">Deepak T</div></div>
+            <div class="review-box"><div class="review-text">Highly recommended workshop.</div><div class="stars">★★★★★</div><div class="client-name">Gokul V</div></div>
+            <div class="review-box"><div class="review-text">Very satisfied with full service.</div><div class="stars">★★★★★</div><div class="client-name">Hari N</div></div>
+
+            <!-- Duplicate Same Reviews Again For Infinite Effect -->
+
+            <div class="review-box"><div class="review-text">Excellent service and quick delivery.</div><div class="stars">★★★★★</div><div class="client-name">Arun Kumar</div></div>
+            <div class="review-box"><div class="review-text">Very professional mechanics.</div><div class="stars">★★★★★</div><div class="client-name">Vijay Raj</div></div>
+            <div class="review-box"><div class="review-text">Affordable pricing and honest billing.</div><div class="stars">★★★★★</div><div class="client-name">Praveen S</div></div>
+            <div class="review-box"><div class="review-text">Best bike service in Selaiyur.</div><div class="stars">★★★★★</div><div class="client-name">Karthik M</div></div>
+            <div class="review-box"><div class="review-text">Genuine spare parts used.</div><div class="stars">★★★★★</div><div class="client-name">Ramesh K</div></div>
+            <div class="review-box"><div class="review-text">Friendly staff and clear explanation.</div><div class="stars">★★★★★</div><div class="client-name">Sathish P</div></div>
+            <div class="review-box"><div class="review-text">My bike mileage improved.</div><div class="stars">★★★★★</div><div class="client-name">Manoj R</div></div>
+            <div class="review-box"><div class="review-text">Fast oil change service.</div><div class="stars">★★★★★</div><div class="client-name">Deepak T</div></div>
+            <div class="review-box"><div class="review-text">Highly recommended workshop.</div><div class="stars">★★★★★</div><div class="client-name">Gokul V</div></div>
+            <div class="review-box"><div class="review-text">Very satisfied with full service.</div><div class="stars">★★★★★</div><div class="client-name">Hari N</div></div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Back Button Very Bottom -->
+<div class="back-wrapper">
+    <a href="index.html" class="back-btn">⬅ Back to Home</a>
+</div>
+
+</body>
+</html>
