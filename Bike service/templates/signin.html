@@ -5,42 +5,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <title>signin form</title>
+    <title>Sign In - Omega Bike Service</title>
 </head>
 
 <body>
     <div class="login-box">
-        <form class="formcontainer">
-            <h2>
-                <center>Sign In</center>
-            </h2>
+        <!-- IMPORTANT CHANGES HERE -->
+        <form class="formcontainer" action="/login" method="POST">
+            <h2>Sign In</h2>
 
             <div class="name">
                 <label>Username:</label>
-                <input class="box1" type="text" placeholder="Username" required>
+                <!-- name added -->
+                <input class="box1" type="text" name="username" placeholder="Username" required>
             </div>
 
             <div class="pass">
                 <label>Password:</label>
-                <input class="box2" type="password" placeholder="Password" required>
+                <!-- name added -->
+                <input class="box2" type="password" name="password" placeholder="Password" required>
             </div>
 
             <button class="login" type="submit">Login</button>
 
             <div class="extra">
-                Don't have an account? <a href="signup.html">Sign Up</a>
+                Don't have an account? 
+                <!-- Flask route -->
+                <a href="/signup">Sign Up</a>
             </div>
+
             <div class="back">
-                <a href="index.html"> ← Back</a>
+                <!-- Flask home route -->
+                <a href="/"> ← Back</a>
             </div>
+
         </form>
     </div>
 </body>
+
 <style>
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
     }
 
     body {
@@ -51,33 +59,28 @@
 
     .login-box {
         display: flex;
+        justify-content: center;
         align-items: center;
-        margin-top: 160px;
-        margin-left: 600px;
-        
+        height: 100vh;
     }
 
     .formcontainer {
-        gap: 30px;
+        gap: 20px;
         display: flex;
         flex-direction: column;
         width: 350px;
-        padding: 12px 40px 12px 12px;
-        font-size: 15px;
+        padding: 30px;
         border: 1px solid #ccc;
         border-radius: 8px;
         background-color: #fff;
-        
     }
 
     h2 {
-        font-family: 'Poppins', sans-serif;
-        color: black;
         text-align: center;
     }
 
     .login {
-        padding: 8px 2px 8px 2px ;
+        padding: 10px;
         font-size: 16px;
         border: none;
         border-radius: 8px;
@@ -85,43 +88,43 @@
         color: black;
         cursor: pointer;
         transition: 0.3s;
+    }
+
+    .login:hover {
+        background-color: #e68a00;
+        color: white;
+    }
+
+    .name, .pass {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        font-size: 14px;
     }
-    .name{
-        font-size: 20px;
-        display: flex;
-        justify-content: center;
+
+    .box1, .box2 {
+        padding: 8px;
+        margin-top: 5px;
     }
-    .pass{
-        font-size: 20px;
-        display: flex;
-        justify-content: center;
-        padding: 2px;
-    }
-    .box1,.box2{
-       padding: 5px;
-       display: flex;
-       cursor: pointer;
-       
-    }
+
     .extra {
-        font-size: 18px;
-        display: flex;
-        justify-content: center;
+        font-size: 14px;
+        text-align: center;
     }
-    .back{
-        padding :5px 10px;
-    }
-    
-    .back a{
-    
+
+    .extra a {
         text-decoration: none;
-        display:flex;
-        justify-content: center;
-        font-size: 20px;
-        color:black
-       
+        color: orange;
+        font-weight: 600;
+    }
+
+    .back {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .back a {
+        text-decoration: none;
+        color: black;
     }
 </style>
 

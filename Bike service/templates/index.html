@@ -13,25 +13,24 @@
 <body>
   <header>
     <div class="logos">
-      <img src="../images/name.png" alt="Omega Bike Services name">
+     <img src="{{ url_for('static', filename='images/name.png') }}" 
+     alt="Omega Bike Services name">
     </div>
     <div class="content">
-      <a href="about.html" class="about">About Us</a>
+      <a href="/about" class="about">About Us</a>
       <a href="ovcontent" class="ov">Our vision</a>
       <a href="choosecontent" class="whychoose">Why Choose Us</a>
-      <a href="client.html" class="hc">Happy Clients</a>
+      <a href="/client" class="hc">Happy Clients</a>
       <a href="location" class="loc"> <i class="fa-solid fa-location-dot"></i> Location</a>
     </div>
-    <div class="user"><a href="signin.html" class="in">Sign In</a>
-      <a href="signup.html" class="up">Sign Up</a>
-       
-
-       </a>
-    </div>
+    <div class="user">
+    <a href="/signin" class="in">Sign In</a>
+    <a href="/signup" class="up">Sign Up</a>
+</div>
   </header>
   <div class="container">
     <div class="indexcover">
-      <img src="../images/indeximg.png" alt="index cover">
+      <img src="{{ url_for('static', filename='images/indeximg.png') }}" alt="index cover">
     </div>
     <form class="formcontainer">
       <select id="vehicle" name="bikes">
