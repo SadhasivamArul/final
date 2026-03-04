@@ -1,22 +1,37 @@
 from flask import Flask, render_template, request, redirect
-import pyodbc
+import sqlite3
+import os
 
 app = Flask(__name__)
 
-# -------- SQL SERVER CONNECTION --------
-conn = pyodbc.connect(
-    "Driver={ODBC Driver 17 for SQL Server};"
-    "Server=DESKTOP-VFBMD49\\SQLEXPRESS;"
-    "Database=OmegaBikeService;"
-    "Trusted_Connection=yes;"
-)
+# -------- DATABASE FILE --------
+DATABASE = 'OmegaBikeService'
 
-cursor = conn.cursor()
+# -------- CREATE TABLE IF NOT EXISTS --------
+def init_db():
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS Users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT UNIQUE,
+            phone TEXT UNIQUE,
+            email TEXT UNIQUE,
+            password TEXT
+        )
+    ''')
+
+    conn.commit()
+    conn.close()
+
+init_db()
 
 # -------- HOME --------
 @app.route('/')
 def home():
     return render_template("index.html")
+
 @app.route('/about')
 def about():
     return render_template("about.html")
@@ -45,27 +60,23 @@ def register():
     password = request.form['password']
     repassword = request.form['repassword']
 
-    # Confirm password check
     if password != repassword:
         return "❌ Password and Confirm Password do not match!"
 
-    # Check if user already exists
-    cursor.execute(
-        "SELECT * FROM Users WHERE username=? OR phone=? OR email=?",
-        (username, phone, email)
-    )
-    existing_user = cursor.fetchone()
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
 
-    if existing_user:
+    try:
+        cursor.execute(
+            "INSERT INTO Users (username, phone, email, password) VALUES (?, ?, ?, ?)",
+            (username, phone, email, password)
+        )
+        conn.commit()
+    except:
+        conn.close()
         return "❌ Username / Phone / Email already exists!"
 
-    # Insert new user
-    cursor.execute(
-        "INSERT INTO Users (username, phone, email, password) VALUES (?, ?, ?, ?)",
-        (username, phone, email, password)
-    )
-    conn.commit()
-
+    conn.close()
     return redirect('/signin')
 
 # -------- LOGIN --------
@@ -75,25 +86,31 @@ def login():
     username = request.form['username']
     password = request.form['password']
 
-    # Step 1: Check if username exists
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+
+    # Check if account exists
     cursor.execute("SELECT * FROM Users WHERE username=?", (username,))
     user = cursor.fetchone()
 
     if not user:
+        conn.close()
         return "❌ Account does not exist. Please Sign Up."
 
-    # Step 2: Check password
+    # Check password
     cursor.execute(
         "SELECT * FROM Users WHERE username=? AND password=?",
         (username, password)
     )
     valid_user = cursor.fetchone()
 
+    conn.close()
+
     if valid_user:
         return "✅ Login Successful!"
     else:
         return "❌ Wrong Password!"
 
-# -------- RUN SERVER --------
+# -------- RUN --------
 if __name__ == '__main__':
     app.run(debug=True)
