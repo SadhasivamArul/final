@@ -1,44 +1,23 @@
 from flask import Flask, render_template, request, redirect
-import sqlite3
-import os
+import psycopg2
 
 app = Flask(__name__)
 
-# -------- DATABASE FILE --------
-DATABASE = 'OmegaBikeService'
+# -------- SUPABASE CONNECTION --------
+conn = psycopg2.connect(
+    host="db.lrsmronreuoqatikdlbu.supabase.co",          # example: db.abcdxyz.supabase.co
+    database="postgres",
+    user="postgres",
+    password="YOUR_PASSWORD",
+    port="5432"
+)
 
-# -------- CREATE TABLE IF NOT EXISTS --------
-def init_db():
-    conn = sqlite3.connect(DATABASE)
-    cursor = conn.cursor()
-
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS Users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT UNIQUE,
-            phone TEXT UNIQUE,
-            email TEXT UNIQUE,
-            password TEXT
-        )
-    ''')
-
-    conn.commit()
-    conn.close()
-
-init_db()
+cursor = conn.cursor()
 
 # -------- HOME --------
 @app.route('/')
 def home():
     return render_template("index.html")
-
-@app.route('/about')
-def about():
-    return render_template("about.html")
-
-@app.route('/client')
-def client():
-    return render_template("client.html")
 
 # -------- SIGNUP PAGE --------
 @app.route('/signup')
@@ -50,33 +29,37 @@ def signup():
 def signin():
     return render_template("signin.html")
 
-# -------- REGISTER USER --------
+# -------- REGISTER --------
 @app.route('/register', methods=['POST'])
 def register():
 
-    username = request.form['username']
-    phone = request.form['phone']
+    firstname = request.form['firstname']
+    lastname = request.form['lastname']
+    gender = request.form['gender']
+    mobile = request.form['mobile']
+    whatsapp = request.form['whatsapp']
+    altmobile = request.form['altmobile']
     email = request.form['email']
+    address = request.form['address']
+    username = request.form['username']
     password = request.form['password']
     repassword = request.form['repassword']
 
     if password != repassword:
-        return "❌ Password and Confirm Password do not match!"
-
-    conn = sqlite3.connect(DATABASE)
-    cursor = conn.cursor()
+        return "❌ Password not matching!"
 
     try:
-        cursor.execute(
-            "INSERT INTO Users (username, phone, email, password) VALUES (?, ?, ?, ?)",
-            (username, phone, email, password)
-        )
-        conn.commit()
-    except:
-        conn.close()
-        return "❌ Username / Phone / Email already exists!"
+        cursor.execute("""
+            INSERT INTO users 
+            (firstname, lastname, gender, mobile, whatsapp, altmobile, email, address, username, password)
+            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+        """, (firstname, lastname, gender, mobile, whatsapp, altmobile, email, address, username, password))
 
-    conn.close()
+        conn.commit()
+    except Exception as e:
+        conn.rollback()
+        return "❌ Username or Email already exists!"
+
     return redirect('/signin')
 
 # -------- LOGIN --------
@@ -86,25 +69,22 @@ def login():
     username = request.form['username']
     password = request.form['password']
 
-    conn = sqlite3.connect(DATABASE)
-    cursor = conn.cursor()
+    cursor.execute(
+        "SELECT * FROM users WHERE username=%s",
+        (username,)
+    )
 
-    # Check if account exists
-    cursor.execute("SELECT * FROM Users WHERE username=?", (username,))
     user = cursor.fetchone()
 
     if not user:
-        conn.close()
-        return "❌ Account does not exist. Please Sign Up."
+        return "❌ Account not found. Please Sign Up."
 
-    # Check password
     cursor.execute(
-        "SELECT * FROM Users WHERE username=? AND password=?",
+        "SELECT * FROM users WHERE username=%s AND password=%s",
         (username, password)
     )
-    valid_user = cursor.fetchone()
 
-    conn.close()
+    valid_user = cursor.fetchone()
 
     if valid_user:
         return "✅ Login Successful!"
