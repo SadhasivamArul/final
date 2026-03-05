@@ -13,24 +13,22 @@
 <body>
   <header>
     <div class="logos">
-     <img src="{{ url_for('static', filename='images/name.png') }}" 
-     alt="Omega Bike Services name">
+      <img src="../images/name.png" alt="Omega Bike Services name">
     </div>
     <div class="content">
-      <a href="/about" class="about">About Us</a>
+      <a href="aboutcontent" class="about">About Us</a>
       <a href="ovcontent" class="ov">Our vision</a>
       <a href="choosecontent" class="whychoose">Why Choose Us</a>
-      <a href="/client" class="hc">Happy Clients</a>
+      <a href="hclients" class="hc">Happy Clients</a>
       <a href="location" class="loc"> <i class="fa-solid fa-location-dot"></i> Location</a>
     </div>
-    <div class="user">
-    <a href="/signin" class="in">Sign In</a>
-    <a href="/signup" class="up">Sign Up</a>
-</div>
+    <div class="user"><a href="/signin" class="in">Sign In</a>
+      <a href="/signup" class="up">Sign Up</a>
+    </div>
   </header>
   <div class="container">
     <div class="indexcover">
-      <img src="{{ url_for('static', filename='images/indeximg.png') }}" alt="index cover">
+      <img src="../images/indeximg.png" alt="index cover">
     </div>
     <form class="formcontainer">
       <select id="vehicle" name="bikes">
@@ -56,6 +54,12 @@
     </form>
   </div>
   <div class="container2">
+    <h2 class="head">Bike Service Solutions</h2>
+    <div class="offers">
+      <a href="general service" class="GS"><img src="../images/general bike.png">General Service
+
+      </a>
+    </div>
 
   </div>
 </body>
@@ -199,6 +203,33 @@
 
   .letgo:hover {
     color: white;
+  }
+
+  .head {
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 3px;
+    margin-top: 30px;
+    margin-left: 40px;
+    font-size: 28px;
+    padding-left: 15px;
+    border-left: 4px solid orange;
+    border-bottom: 5px solid orange;
+    display: inline-block;
+    padding-bottom: 5px;
+  }
+
+  .GS {
+    display: inline-block;
+    width: 150px;
+    height: 110px;
+    border: 2px solid #ccc;
+    border-radius: 0px;
+    margin-left: 50px;
+    margin-top: 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
   }
 
   @media (max-width:1440px) {
